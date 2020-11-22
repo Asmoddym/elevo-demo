@@ -1,4 +1,7 @@
 #app
 
+javascript:
+	var tasks = #{Oj.dump(@tasks).html_safe}
+	var categories = #{Oj.dump(@categories).html_safe}
+
 = javascript_include_tag 'http://localhost:8080/app.js'
-/, crossorigin: 'use-credentials'

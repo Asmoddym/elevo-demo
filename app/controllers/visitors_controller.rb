@@ -1,3 +1,6 @@
 class VisitorsController < ApplicationController
-  def index; end
+  def index
+    @tasks = Task.all
+    @categories = Category.all
+  end
 end
