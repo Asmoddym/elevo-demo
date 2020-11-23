@@ -8,5 +8,10 @@ Rails.application.routes.draw do
       get :index
     end
   end
+
+  resources :objectives do
+    collection do
+    end
+  end
 end
 
