@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_22_171350) do
+ActiveRecord::Schema.define(version: 2020_11_23_151713) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "key_results", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "weight"
+    t.bigint "objective_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["objective_id"], name: "index_key_results_on_objective_id"
+  end
+
+  create_table "objectives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,5 +43,6 @@ ActiveRecord::Schema.define(version: 2020_11_22_171350) do
     t.index ["category_id"], name: "index_tasks_on_category_id"
   end
 
+  add_foreign_key "key_results", "objectives"
   add_foreign_key "tasks", "categories"
 end

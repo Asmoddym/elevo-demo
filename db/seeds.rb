@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+obj1 = Objective.create! name: "obj 1"
+Objective.create! name: "obj 2", weight: 12
+
+KeyResult.create! name: "kr 1", weight: 12, objective_id: obj1.id

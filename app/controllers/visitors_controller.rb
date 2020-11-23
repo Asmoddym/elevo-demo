@@ -1,6 +1,6 @@
 class VisitorsController < ApplicationController
   def index
-    @tasks = Task.all
-    @categories = Category.all
+    @objectives = Objective.all
+    @key_results = KeyResult.all
   end
 end

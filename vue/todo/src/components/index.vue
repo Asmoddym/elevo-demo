@@ -1,47 +1,37 @@
 <template>
 
-  <div id='main_container'>
-    <div v-for='(item) in categories' :key='item.id'>
-      <Category :category='item' :tasks='getCategoryTasks(item.id)' @category-change='changeCategory' />
-    </div>
+  <div id='main-container'>
+    <Objective v-for='objective in objectives' :key='objective.id' :objective='objective' :key_results='getKeyResultsPerObjective(objective.id)' />
   </div>
 
 </template>
 
 <script>
 
-import Category from '@/components/Category'
+import Objective from '@/components/Objective'
 
 export default {
   name: 'Index',
   components: {
-    Category
+    Objective
   },
-  data () {
+  data() {
     return {
-      tasks: window.tasks,
-      categories: window.categories
+      objectives: window.objectives_list,
+      key_results: window.key_results_list
     }
   },
   methods: {
-    getCategoryTasks: function(category_id) {
-      return this.tasks.filter((task) => { return task.category_id === category_id })
-    },
-    changeCategory: function(data) {
-      let task_idx = this.tasks.findIndex((task) => { return task.id === data.task_id })
-      let new_task = this.tasks[task_idx]
-      new_task.category_id = data.category_id
-      this.$set(this.tasks, task_idx, new_task)
+    getKeyResultsPerObjective(objective_id) {
+      return this.objectives.filter((objective) => { return objective.id === objective_id })
     }
   }
+
+
 }
 
 </script>
 
 <style>
-
-  #main_container {
-    display: flex;
-  }
 
 </style>
