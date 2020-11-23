@@ -6,7 +6,7 @@
     </button>
 
     <div class='objective-list'>
-      <Objective v-for='objective in objectives' :key='objective.id' :objective='objective' :key_results='getKeyResultsPerObjective(objective.id)' />
+      <Objective v-for='objective in objectives' :key='objective.id' :objective='objective' :key_results='getKeyResultsPerObjective(objective.id)' @remove_objective='removeObjective' />
     </div>
   </div>
 
@@ -37,6 +37,12 @@ export default {
       api.createObjective().then((res) => {
         let objective = res.data.objective
         this.objectives.push(objective)
+      })
+    },
+    removeObjective(objective_id) {
+      api.removeObjective(objective_id).then((res) => {
+        let objective_idx = this.objectives.findIndex((objective) => { return objective.id === objective_id })
+        this.objectives.splice(objective_idx, 1)
       })
     }
   }

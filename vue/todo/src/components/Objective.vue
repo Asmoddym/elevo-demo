@@ -3,6 +3,9 @@
     <span class='name'>
       {{ objective.name }}
     </span>
+    <button @click='removeObjective()'>
+      🗑️
+    </button>
   </div>
 </template>
 
@@ -13,5 +16,16 @@ export default {
     objective: Object,
     key_results: Array
   },
+  methods: {
+    removeObjective() {
+      this.$emit('remove_objective', this.objective.id)
+    }
+  }
 }
 </script>
+
+<style>
+  .objective-container {
+    border: 1px solid black;
+  }
+</style>
