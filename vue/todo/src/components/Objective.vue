@@ -4,8 +4,10 @@
       {{ objective.name }}
     </span>
 
+    <WeightInput :weight='objective.weight' @update_weight='updateWeight' />
+
     <div class='key-result-list'>
-      <KeyResult v-for='key_result in key_results' :key_result='key_result' :key='key_result.id' />
+      <KeyResult v-for='key_result in key_results' :key_result='key_result' :key='key_result.id' @update_key_result_weight='updateKeyResultWeight' />
     </div>
 
     <div>
@@ -20,11 +22,13 @@
 
 <script>
 
+import WeightInput from '@/components/WeightInput'
 import KeyResult from '@/components/KeyResult'
 export default {
   name: 'Objective',
   components: {
-    KeyResult
+    KeyResult,
+    WeightInput
   },
   props: {
     objective: Object,
@@ -36,6 +40,12 @@ export default {
     },
     addKeyResult() {
       this.$emit('add_key_result', this.objective.id)
+    },
+    updateWeight(weight) {
+      this.$emit('update_weight', { objective_id: this.objective.id, weight: weight })
+    },
+    updateKeyResultWeight(data) {
+      this.$emit('update_weight', { objective_id: this.objective.id, key_result_id: data.key_result_id, weight: data.weight })
     }
   }
 }

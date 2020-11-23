@@ -9,4 +9,10 @@ class ObjectivesController < ApplicationController
     objective.destroy
     render json: { success: true }, status: 200
   end
+
+  def update
+    objective = Objective.find(params['id'])
+    objective.update_attributes weight: params['weight'].to_i
+    render json: { success: true }, status: 200
+  end
 end
