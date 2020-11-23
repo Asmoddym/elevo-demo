@@ -6,7 +6,7 @@
     </button>
 
     <div class='objective-list'>
-      <Objective v-for='objective in objectives' :key='objective.id' :objective='objective' :key_results='getKeyResultsPerObjective(objective.id)' @remove_objective='removeObjective' />
+      <Objective v-for='objective in objectives' :key='objective.id' :objective='objective' :key_results='getKeyResultsPerObjective(objective.id)' @remove_objective='removeObjective' @add_key_result='addKeyResult' />
     </div>
   </div>
 
@@ -31,12 +31,11 @@ export default {
   },
   methods: {
     getKeyResultsPerObjective(objective_id) {
-      return this.objectives.filter((objective) => { return objective.id === objective_id })
+      return this.key_results.filter((key_result) => { return key_result.objective_id === objective_id })
     },
     createObjective() {
       api.createObjective().then((res) => {
-        let objective = res.data.objective
-        this.objectives.push(objective)
+        this.objectives.push(res.data.objective)
       })
     },
     removeObjective(objective_id) {
@@ -44,10 +43,13 @@ export default {
         let objective_idx = this.objectives.findIndex((objective) => { return objective.id === objective_id })
         this.objectives.splice(objective_idx, 1)
       })
+    },
+    addKeyResult(objective_id) {
+      api.addKeyResult(objective_id).then((res) => {
+        this.key_results.push(res.data.key_result)
+      })
     }
   }
-
-
 }
 
 </script>

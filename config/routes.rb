@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :objectives do
-    collection do
-    end
+    resources :key_results
   end
 end
 
