@@ -3,5 +3,6 @@
 javascript:
 	var objectives_list = #{Oj.dump(@objectives).html_safe}
 	var key_results_list = #{Oj.dump(@key_results).html_safe}
+	var error_messages = #{Oj.dump(@error_messages).html_safe}
 
 = javascript_include_tag 'http://localhost:8080/app.js'

@@ -9,7 +9,7 @@
 export default {
   name: 'WeightInput',
   props: {
-    weight: Number,
+    weight: Number
   },
   methods: {
     updateWeight(event) {

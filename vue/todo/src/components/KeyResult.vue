@@ -18,7 +18,7 @@ export default {
     WeightInput
   },
   props: {
-    key_result: Object,
+    key_result: Object
   },
   methods: {
     updateWeight(weight) {

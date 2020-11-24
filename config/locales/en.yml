@@ -30,4 +30,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  objectives:
+    weight_error:
+      too_few_weight: "The sum of all objectives weights only makes %{sum}%, it should reach 100% :("
+      too_many_weight: "The sum of all objectives weights is more than 100% (currently %{sum}%)"
+
+  key_results:
+    weight_error:
+      too_few_weight: "The sum of all key requests weights only makes %{sum}%, it should reach 100% :("
+      too_many_weight: "The sum of all key requests weights is more than 100% (currently %{sum}%)"

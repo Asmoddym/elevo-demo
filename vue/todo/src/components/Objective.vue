@@ -8,6 +8,11 @@
 
     <div class='key-result-list'>
       <KeyResult v-for='key_result in key_results' :key_result='key_result' :key='key_result.id' @update_key_result_weight='updateKeyResultWeight' />
+      <div class='error-message' v-if='hasErrorMessage'>
+        <span>
+          {{ error_message }}
+        </span>
+      </div>
     </div>
 
     <div>
@@ -15,8 +20,6 @@
         Add KR
       </button>
     </div>
-
-    <button
   </div>
 </template>
 
@@ -24,6 +27,7 @@
 
 import WeightInput from '@/components/WeightInput'
 import KeyResult from '@/components/KeyResult'
+
 export default {
   name: 'Objective',
   components: {
@@ -32,9 +36,13 @@ export default {
   },
   props: {
     objective: Object,
-    key_results: Array
+    key_results: Array,
+    error_message: String
   },
   methods: {
+    hasErrorMessage() {
+      return typeof this.error_message !== 'undefined'
+    },
     removeObjective() {
       this.$emit('remove_objective', this.objective.id)
     },

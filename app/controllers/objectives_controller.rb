@@ -13,6 +13,8 @@ class ObjectivesController < ApplicationController
   def update
     objective = Objective.find(params['id'])
     objective.update_attributes weight: params['weight'].to_i
-    render json: { success: true }, status: 200
+
+    validator = WeightValidator.new(:objectives).perform
+    render json: { success: true, error_message: validator.has_failed? ? validator.get_error_message : nil }, status: 200
   end
 end
