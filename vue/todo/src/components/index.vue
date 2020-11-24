@@ -91,6 +91,13 @@ export default {
 
 <style>
 
+.objective-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
 .error-message {
   color: red;
 }

@@ -31,7 +31,15 @@ export default {
 
 <style>
   .key-result-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .key-result-container > * {
     margin: 5px;
   }
 </style>
