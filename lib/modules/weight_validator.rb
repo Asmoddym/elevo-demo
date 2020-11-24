@@ -26,7 +26,10 @@ class WeightValidator
   private
 
   def check_items
-    return true if no_weight_present?
+    if @items.count == 0 || no_weight_present?
+      @status = true
+      return true
+    end
 
     @weight_sum = calculate_total_sum
     @error = check_sum
